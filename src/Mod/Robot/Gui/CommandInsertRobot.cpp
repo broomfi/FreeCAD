@@ -37,6 +37,110 @@
 
 using namespace std;
 
+DEF_STD_CMD_A(CmdRobotInsertKukaIR140)
+
+CmdRobotInsertKukaIR140::CmdRobotInsertKukaIR140()
+    : Command("Robot_InsertKukaIR140")
+{
+    sAppModule = "Robot";
+    sGroup = QT_TR_NOOP("Robot");
+    sMenuText = QT_TR_NOOP("KUKA KR140-2 Comp");
+    sToolTipText = QT_TR_NOOP("Inserts a KUKA KR140-2 Comp into the document");
+    sWhatsThis = "Robot_InsertKukaIR140";
+    sStatusTip = sToolTipText;
+    sPixmap = "Robot_CreateRobot";
+}
+
+
+void CmdRobotInsertKukaIR140::activated(int)
+{
+    std::string FeatName = getUniqueObjectName("KR140_");
+    std::string RobotPath = "Mod/Robot/Lib/Kuka/KR140.wrl";
+    std::string KinematicPath = "Mod/Robot/Lib/Kuka/KR140.csv";
+
+    openCommand("Place robot");
+    doCommand(Doc,
+              "App.activeDocument().addObject(\"Robot::RobotObject\",\"%s\")",
+              FeatName.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.RobotVrmlFile = App.getResourceDir()+\"%s\"",
+              FeatName.c_str(),
+              RobotPath.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.RobotKinematicFile = App.getResourceDir()+\"%s\"",
+              FeatName.c_str(),
+              KinematicPath.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis2 = -120", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis3 = 105", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis5 = 45", FeatName.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.Home  = [0.0,-120.0,105.0,0.0,45.0,0.0]",
+              FeatName.c_str());
+    updateActive();
+    viewFitAll();
+    commitCommand();
+}
+
+bool CmdRobotInsertKukaIR140::isActive()
+{
+    return hasActiveDocument();
+}
+
+// #####################################################################################################
+
+
+DEF_STD_CMD_A(CmdRobotInsertKukaIR60)
+
+CmdRobotInsertKukaIR60::CmdRobotInsertKukaIR60()
+    : Command("Robot_InsertKukaIR60")
+{
+    sAppModule = "Robot";
+    sGroup = QT_TR_NOOP("Robot");
+    sMenuText = QT_TR_NOOP("KUKA KR60");
+    sToolTipText = QT_TR_NOOP("Inserts a KUKA KR60 into the document");
+    sWhatsThis = "Robot_InsertKukaIR60";
+    sStatusTip = sToolTipText;
+    sPixmap = "Robot_CreateRobot";
+}
+
+
+void CmdRobotInsertKukaIR60::activated(int)
+{
+    std::string FeatName = getUniqueObjectName("KR60_");
+    std::string RobotPath = "Mod/Robot/Lib/Kuka/KR60HA.wrl";
+    std::string KinematicPath = "Mod/Robot/Lib/Kuka/KR60HA.csv";
+
+    openCommand("Place robot");
+    doCommand(Doc,
+              "App.activeDocument().addObject(\"Robot::RobotObject\",\"%s\")",
+              FeatName.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.RobotVrmlFile = App.getResourceDir()+\"%s\"",
+              FeatName.c_str(),
+              RobotPath.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.RobotKinematicFile = App.getResourceDir()+\"%s\"",
+              FeatName.c_str(),
+              KinematicPath.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis2 = -120", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis3 = 105", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis5 = 45", FeatName.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.Home  = [0.0,-120.0,105.0,0.0,45.0,0.0]",
+              FeatName.c_str());
+    updateActive();
+    viewFitAll();
+    commitCommand();
+}
+
+bool CmdRobotInsertKukaIR60::isActive()
+{
+    return hasActiveDocument();
+}
+
+// #####################################################################################################
+
+
 DEF_STD_CMD_A(CmdRobotInsertKukaIR500)
 
 CmdRobotInsertKukaIR500::CmdRobotInsertKukaIR500()
@@ -44,8 +148,8 @@ CmdRobotInsertKukaIR500::CmdRobotInsertKukaIR500()
 {
     sAppModule = "Robot";
     sGroup = QT_TR_NOOP("Robot");
-    sMenuText = QT_TR_NOOP("Kuka IR500");
-    sToolTipText = QT_TR_NOOP("Inserts a Kuka IR500 into the document");
+    sMenuText = QT_TR_NOOP("KUKA KR500");
+    sToolTipText = QT_TR_NOOP("Inserts a KUKA KR500 into the document");
     sWhatsThis = "Robot_InsertKukaIR500";
     sStatusTip = sToolTipText;
     sPixmap = "Robot_CreateRobot";
@@ -54,7 +158,7 @@ CmdRobotInsertKukaIR500::CmdRobotInsertKukaIR500()
 
 void CmdRobotInsertKukaIR500::activated(int)
 {
-    std::string FeatName = getUniqueObjectName("Robot");
+    std::string FeatName = getUniqueObjectName("KR500_");
     std::string RobotPath = "Mod/Robot/Lib/Kuka/kr500_1.wrl";
     std::string KinematicPath = "Mod/Robot/Lib/Kuka/kr500_1.csv";
 
@@ -70,13 +174,14 @@ void CmdRobotInsertKukaIR500::activated(int)
               "App.activeDocument().%s.RobotKinematicFile = App.getResourceDir()+\"%s\"",
               FeatName.c_str(),
               KinematicPath.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis2 = -90", FeatName.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis3 = 90", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis2 = -120", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis3 = 105", FeatName.c_str());
     doCommand(Doc, "App.activeDocument().%s.Axis5 = 45", FeatName.c_str());
     doCommand(Doc,
-              "App.activeDocument().%s.Home  = [0.0,-90.0,90.0,0.0,45.0,0.0]",
+              "App.activeDocument().%s.Home  = [0.0,-120.0,105.0,0.0,45.0,0.0]",
               FeatName.c_str());
     updateActive();
+    viewFitAll();
     commitCommand();
 }
 
@@ -95,8 +200,8 @@ CmdRobotInsertKukaIR16::CmdRobotInsertKukaIR16()
 {
     sAppModule = "Robot";
     sGroup = QT_TR_NOOP("Robot");
-    sMenuText = QT_TR_NOOP("Kuka IR16");
-    sToolTipText = QT_TR_NOOP("Inserts a Kuka IR16 robot into the scene");
+    sMenuText = QT_TR_NOOP("KUKA KR16");
+    sToolTipText = QT_TR_NOOP("Inserts a KUKA KR16 robot into the scene");
     sWhatsThis = "Robot_InsertKukaIR16";
     sStatusTip = sToolTipText;
     sPixmap = "Robot_CreateRobot";
@@ -105,7 +210,7 @@ CmdRobotInsertKukaIR16::CmdRobotInsertKukaIR16()
 
 void CmdRobotInsertKukaIR16::activated(int)
 {
-    std::string FeatName = getUniqueObjectName("Robot");
+    std::string FeatName = getUniqueObjectName("KR16_");
     std::string RobotPath = "Mod/Robot/Lib/Kuka/kr16.wrl";
     std::string KinematicPath = "Mod/Robot/Lib/Kuka/kr_16.csv";
 
@@ -121,10 +226,14 @@ void CmdRobotInsertKukaIR16::activated(int)
               "App.activeDocument().%s.RobotKinematicFile = App.getResourceDir()+\"%s\"",
               FeatName.c_str(),
               KinematicPath.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis2 = -90", FeatName.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis3 = 90", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis2 = -120", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis3 = 105", FeatName.c_str());
     doCommand(Doc, "App.activeDocument().%s.Axis5 = 45", FeatName.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.Home  = [0.0,-120.0,105.0,0.0,45.0,0.0]",
+              FeatName.c_str());
     updateActive();
+    viewFitAll();
     commitCommand();
 }
 
@@ -143,8 +252,8 @@ CmdRobotInsertKukaIR210::CmdRobotInsertKukaIR210()
 {
     sAppModule = "Robot";
     sGroup = QT_TR_NOOP("Robot");
-    sMenuText = QT_TR_NOOP("Kuka IR210");
-    sToolTipText = QT_TR_NOOP("Inserts a Kuka IR210 robot into the scene");
+    sMenuText = QT_TR_NOOP("KUKA KR210");
+    sToolTipText = QT_TR_NOOP("Inserts a KUKA KR210 robot into the scene");
     sWhatsThis = "Robot_InsertKukaIR210";
     sStatusTip = sToolTipText;
     sPixmap = "Robot_CreateRobot";
@@ -153,7 +262,7 @@ CmdRobotInsertKukaIR210::CmdRobotInsertKukaIR210()
 
 void CmdRobotInsertKukaIR210::activated(int)
 {
-    std::string FeatName = getUniqueObjectName("Robot");
+    std::string FeatName = getUniqueObjectName("KR210_");
     std::string RobotPath = "Mod/Robot/Lib/Kuka/kr210.WRL";
     std::string KinematicPath = "Mod/Robot/Lib/Kuka/kr_210_2.csv";
 
@@ -169,10 +278,14 @@ void CmdRobotInsertKukaIR210::activated(int)
               "App.activeDocument().%s.RobotKinematicFile = App.getResourceDir()+\"%s\"",
               FeatName.c_str(),
               KinematicPath.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis2 = -90", FeatName.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis3 = 90", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis2 = -120", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis3 = 105", FeatName.c_str());
     doCommand(Doc, "App.activeDocument().%s.Axis5 = 45", FeatName.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.Home  = [0.0,-120.0,105.0,0.0,45.0,0.0]",
+              FeatName.c_str());
     updateActive();
+    viewFitAll();
     commitCommand();
 }
 
@@ -190,8 +303,8 @@ CmdRobotInsertKukaIR125::CmdRobotInsertKukaIR125()
 {
     sAppModule = "Robot";
     sGroup = QT_TR_NOOP("Robot");
-    sMenuText = QT_TR_NOOP("Kuka IR125");
-    sToolTipText = QT_TR_NOOP("Inserts a Kuka IR125 robot into the scene");
+    sMenuText = QT_TR_NOOP("KUKA KR125");
+    sToolTipText = QT_TR_NOOP("Inserts a KUKA KR125 robot into the scene");
     sWhatsThis = "Robot_InsertKukaIR125";
     sStatusTip = sToolTipText;
     sPixmap = "Robot_CreateRobot";
@@ -200,7 +313,7 @@ CmdRobotInsertKukaIR125::CmdRobotInsertKukaIR125()
 
 void CmdRobotInsertKukaIR125::activated(int)
 {
-    std::string FeatName = getUniqueObjectName("Robot");
+    std::string FeatName = getUniqueObjectName("KR125_");
     std::string RobotPath = "Mod/Robot/Lib/Kuka/kr125_3.wrl";
     std::string KinematicPath = "Mod/Robot/Lib/Kuka/kr_125.csv";
 
@@ -216,10 +329,14 @@ void CmdRobotInsertKukaIR125::activated(int)
               "App.activeDocument().%s.RobotKinematicFile = App.getResourceDir()+\"%s\"",
               FeatName.c_str(),
               KinematicPath.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis2 = -90", FeatName.c_str());
-    doCommand(Doc, "App.activeDocument().%s.Axis3 = 90", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis2 = -120", FeatName.c_str());
+    doCommand(Doc, "App.activeDocument().%s.Axis3 = 105", FeatName.c_str());
     doCommand(Doc, "App.activeDocument().%s.Axis5 = 45", FeatName.c_str());
+    doCommand(Doc,
+              "App.activeDocument().%s.Home  = [0.0,-120.0,105.0,0.0,45.0,0.0]",
+              FeatName.c_str());
     updateActive();
+    viewFitAll();
     commitCommand();
 }
 
@@ -291,6 +408,8 @@ void CreateRobotCommandsInsertRobots()
 {
     Gui::CommandManager& rcCmdMgr = Gui::Application::Instance->commandManager();
 
+    rcCmdMgr.addCommand(new CmdRobotInsertKukaIR140());
+    rcCmdMgr.addCommand(new CmdRobotInsertKukaIR60());
     rcCmdMgr.addCommand(new CmdRobotInsertKukaIR16());
     rcCmdMgr.addCommand(new CmdRobotInsertKukaIR500());
     rcCmdMgr.addCommand(new CmdRobotInsertKukaIR210());

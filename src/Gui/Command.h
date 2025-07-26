@@ -416,6 +416,8 @@ public:
     static void abortCommand();
     /// Check if an Undo transaction is open on the active document
     static bool hasPendingCommand();
+    /// View Fit All 
+    static void viewFitAll();
     /// Updates the (active) document (propagate changes)
     static void updateActive();
     /// Checks if the active object of the active document is valid

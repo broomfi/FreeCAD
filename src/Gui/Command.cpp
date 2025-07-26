@@ -836,6 +836,14 @@ const std::string Command::strToPython(const char* Str)
     return Base::InterpreterSingleton::strToPython(Str);
 }
 
+/// View Fit All
+void Command::viewFitAll()
+{
+    Gui::Document* doc = getGuiApplication()->activeDocument();
+    Gui::View3DInventor* view = dynamic_cast<Gui::View3DInventor*>(doc->getActiveView());
+    doCommand(Doc, "Gui.getDocument('%s').ActiveView.fitAll()", doc->getDocument()->getName());
+}
+
 /// Updates the (active) document (propagate changes)
 void Command::updateActive()
 {

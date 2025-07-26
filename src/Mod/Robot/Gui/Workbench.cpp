@@ -87,7 +87,9 @@ void Workbench::activated()
                            "Robot_RestoreHomePos",
                            nullptr};
 
-    const char* Empty[] = {"Robot_InsertKukaIR500",
+    const char* Empty[] = {"Robot_InsertKukaIR140",
+                           "Robot_InsertKukaIR60",
+                           "Robot_InsertKukaIR500",
                            "Robot_InsertKukaIR16",
                            "Robot_InsertKukaIR210",
                            "Robot_InsertKukaIR125",
@@ -173,7 +175,9 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     // analyze
     Gui::MenuItem* insertRobots = new Gui::MenuItem;
     insertRobots->setCommand("Insert Robot");
-    *insertRobots << "Robot_InsertKukaIR500"
+    *insertRobots << "Robot_InsertKukaIR140"
+                  << "Robot_InsertKukaIR60"
+                  << "Robot_InsertKukaIR500"
                   << "Robot_InsertKukaIR210"
                   << "Robot_InsertKukaIR125"
                   << "Robot_InsertKukaIR16"

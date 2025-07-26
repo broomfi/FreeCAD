@@ -63,7 +63,7 @@ CmdRobotCreateTrajectory::CmdRobotCreateTrajectory()
 
 void CmdRobotCreateTrajectory::activated(int)
 {
-    std::string FeatName = getUniqueObjectName("Trajectory");
+    std::string FeatName = getUniqueObjectName("Prog");
 
     openCommand("Create trajectory");
     doCommand(Doc,

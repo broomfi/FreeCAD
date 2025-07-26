@@ -20,6 +20,12 @@ endif(BUILD_GUI)
 
 if (EXISTS ${CMAKE_SOURCE_DIR}/src/Mod/Robot/Lib/Kuka)
 SET(Robot_Resources
+    Lib/Kuka/KR140.wrl
+    Lib/Kuka/KR140.csv
+    Lib/Kuka/kr_140_2_comp.pdf
+    Lib/Kuka/KR60HA.wrl
+    Lib/Kuka/KR60HA.csv
+    Lib/Kuka/Spez_KR_30_60_HA.pdf
     Lib/Kuka/kr500_1.wrl
     Lib/Kuka/kr500_1.csv
     Lib/Kuka/kr_500_2.pdf
