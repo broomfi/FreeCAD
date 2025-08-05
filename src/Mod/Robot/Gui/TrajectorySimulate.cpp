@@ -51,6 +51,12 @@ TrajectorySimulate::TrajectorySimulate(Robot::RobotObject* pcRobotObject,
 
     // set Tool
     sim.Tool = pcRobotObject->Tool.getValue();
+    // set Base
+    //sim.Base = pcRobotObject->Placement.getValue() * pcRobotObject->Base.getValue() * pcTrajectoryObject->Base.getValue();
+    Base::Placement robObjPlm = pcRobotObject->Placement.getValue();
+    //Base::Placement trajObjPlm = pcTrajectoryObject->Placement.getValue();
+    sim.Base = robObjPlm.inverse() * pcRobotObject->Base.getValue()
+        * pcTrajectoryObject->Placement.getValue() * pcTrajectoryObject->Base.getValue();
 
     ui->trajectoryTable->setSortingEnabled(false);
 
@@ -121,6 +127,7 @@ TrajectorySimulate::~TrajectorySimulate() = default;
 void TrajectorySimulate::setTo()
 {
     sim.setToTime(timePos);
+
     ViewProv->setAxisTo(sim.Axis[0],
                         sim.Axis[1],
                         sim.Axis[2],

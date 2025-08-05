@@ -53,6 +53,11 @@ TaskTrajectory::TaskTrajectory(Robot::RobotObject* pcRobotObject,
 
     // set Tool
     sim.Tool = pcRobotObject->Tool.getValue();
+    // set Base
+    //sim.Base = pcRobotObject->Placement.getValue() * pcRobotObject->Base.getValue() * pcTrajectoryObject->Base.getValue();
+    Base::Placement robObjPlm = pcRobotObject->Placement.getValue();
+    sim.Base = robObjPlm.inverse() * pcRobotObject->Base.getValue()
+        * pcTrajectoryObject->Placement.getValue() * pcTrajectoryObject->Base.getValue();
 
     ui->trajectoryTable->setSortingEnabled(false);
 

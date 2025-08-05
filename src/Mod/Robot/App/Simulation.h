@@ -73,6 +73,7 @@ public:
     Trajectory Trac;
     Robot6Axis& Rob;
     Base::Placement Tool;
+    Base::Placement Base;
 };
 
 

@@ -65,7 +65,7 @@ void Simulation::setToTime(float t)
 {
     Pos = t;
     Base::Placement NeededPos = Trac.getPosition(Pos);
-    NeededPos = NeededPos * Tool.inverse();
+    NeededPos = Base * NeededPos * Tool.inverse();
     Rob.setTo(NeededPos);
     Axis[0] = Rob.getAxis(0);
     Axis[1] = Rob.getAxis(1);
@@ -85,7 +85,7 @@ void Simulation::reset()
     Rob.setAxis(5, startAxis[5]);
 
     Base::Placement NeededPos = Trac.getPosition(0.0);
-    NeededPos = NeededPos * Tool.inverse();
+    NeededPos = Base * NeededPos * Tool.inverse();
     Rob.setTo(NeededPos);
 
     Axis[0] = Rob.getAxis(0);
