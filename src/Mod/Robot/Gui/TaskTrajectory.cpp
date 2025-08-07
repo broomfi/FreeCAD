@@ -54,10 +54,7 @@ TaskTrajectory::TaskTrajectory(Robot::RobotObject* pcRobotObject,
     // set Tool
     sim.Tool = pcRobotObject->Tool.getValue();
     // set Base
-    //sim.Base = pcRobotObject->Placement.getValue() * pcRobotObject->Base.getValue() * pcTrajectoryObject->Base.getValue();
-    Base::Placement robObjPlm = pcRobotObject->Placement.getValue();
-    sim.Base = robObjPlm.inverse() * pcRobotObject->Base.getValue()
-        * pcTrajectoryObject->Placement.getValue() * pcTrajectoryObject->Base.getValue();
+    sim.Base = pcTrajectoryObject->Placement.getValue();
 
     ui->trajectoryTable->setSortingEnabled(false);
 
@@ -170,7 +167,7 @@ void TaskTrajectory::setTo()
                        sim.Axis[4],
                        sim.Axis[5],
                        sim.Rob.getTcp());
-    viewTool(sim.Rob.getTcp());
+    viewTool(sim.Rob.getBaseTcp(sim.Base));
 }
 
 void TaskTrajectory::start()

@@ -263,6 +263,15 @@ Base::Placement Robot6Axis::getTcp()
                            Base::Rotation(x, y, z, w));
 }
 
+Base::Placement Robot6Axis::getBaseTcp(Base::Placement useBase)
+{
+    double x, y, z, w;
+    Tcp.M.GetQuaternion(x, y, z, w);
+    return useBase * Base::Placement(Base::Vector3d(Tcp.p[0], Tcp.p[1], Tcp.p[2]),
+                           Base::Rotation(x, y, z, w));
+}
+
+
 bool Robot6Axis::calcTcp()
 {
     // Create solver based on kinematic chain

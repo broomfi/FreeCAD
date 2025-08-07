@@ -76,6 +76,7 @@ public:
     /// calculate the new Tcp out of the Axis
     bool calcTcp();
     Base::Placement getTcp();
+    Base::Placement getBaseTcp(Base::Placement);
 
     // void setKinematik(const std::vector<std::vector<float> > &KinTable);
 
